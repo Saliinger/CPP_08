@@ -63,7 +63,7 @@ long Span::longestSpan() {
   return span;
 }
 
-void Span::addnumber(int n) {
+void Span::addNumber(int n) {
   if (_len < _size) {
     _array[_len] = n;
     _len++;

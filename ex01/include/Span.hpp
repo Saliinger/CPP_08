@@ -21,10 +21,12 @@ class Span {
   // functions
   long shortestSpan();
   long longestSpan();
-  void addnumber(int n);
+  void addNumber(int n);
 
   // exception
   class OverflowException : public std::exception {
     const char *what() const throw();
   };
 };
+
+#include "../lib/Span.tpp"
