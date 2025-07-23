@@ -33,22 +33,6 @@ Span::Span(unsigned int size) {
 }
 
 // funcitons
-long Span::shortestSpan() {
-  long span = 0;
-  unsigned int i = 0;
-
-  while (_array[i]) {
-    unsigned int j = 0;
-    while (_array[j]) {
-      if (_array[i] - _array[j] < span && _array[i] - _array[j] > 0 && i != j)
-        span = _array[i] - _array[j];
-      j++;
-    }
-    i++;
-  }
-  return span;
-}
-
 int Span::max() {
   int max = std::numeric_limits<int>::min();
 
@@ -67,6 +51,15 @@ int Span::min() {
   return min;
 }
 
+long Span::shortestSpan() {
+  long span = 0;
+  int short = this->min();
+
+
+
+  return span;
+}
+
 long Span::longestSpan() { return max() - min(); }
 
 void Span::addNumber(int n) {
@@ -74,7 +67,7 @@ void Span::addNumber(int n) {
     _array[_len] = n;
     _len++;
   } else
-    throw Span::OverflowException();
+    throw OverflowException();
 }
 
 const char *Span::OverflowException::what() const throw() {
