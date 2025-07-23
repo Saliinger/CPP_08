@@ -1,6 +1,16 @@
 {
   "files.associations": {
     "*.tpp": "cpp",
-    "limits": "cpp"
+    "limits": "cpp",
+    "__locale": "cpp",
+    "bitset": "cpp",
+    "ios": "cpp",
+    "istream": "cpp",
+    "locale": "cpp",
+    "new": "cpp",
+    "print": "cpp",
+    "streambuf": "cpp",
+    "string": "cpp",
+    "typeinfo": "cpp"
   }
 }

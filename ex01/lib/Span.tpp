@@ -34,6 +34,7 @@ Span::Span(unsigned int size) {
 
 // funcitons
 int Span::max() {
+  if (_len < 2) throw NoSpanException();
   int max = std::numeric_limits<int>::min();
 
   for (unsigned int i = 0; i < _len; i++) {
@@ -52,12 +53,9 @@ int Span::min() {
 }
 
 long Span::shortestSpan() {
-  long span = 0;
-  int short = this->min();
+  if (_len < 2) throw NoSpanException();
 
-
-
-  return span;
+  return 0;
 }
 
 long Span::longestSpan() { return max() - min(); }
@@ -72,4 +70,8 @@ void Span::addNumber(int n) {
 
 const char *Span::OverflowException::what() const throw() {
   return "Error: no space left";
+}
+
+const char *Span::NoSpanException::what() const throw() {
+  return "Error: no span";
 }

@@ -29,6 +29,10 @@ class Span {
   class OverflowException : public std::exception {
     const char *what() const throw();
   };
+
+    class NoSpanException : public std::exception {
+    const char *what() const throw();
+  };
 };
 
 #include "../lib/Span.tpp"
