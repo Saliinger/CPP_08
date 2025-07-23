@@ -40,7 +40,8 @@ long Span::shortestSpan() {
   while (_array[i]) {
     unsigned int j = 0;
     while (_array[j]) {
-      if (_array[i] - _array[j] < span) span = _array[i] - _array[j];
+      if (_array[i] - _array[j] < span && _array[i] - _array[j] > 0 && i != j)
+        span = _array[i] - _array[j];
       j++;
     }
     i++;
@@ -48,20 +49,25 @@ long Span::shortestSpan() {
   return span;
 }
 
-long Span::longestSpan() {
-  long span = 0;
-  unsigned int i = 0;
+int Span::max() {
+  int max = std::numeric_limits<int>::min();
 
-  while (_array[i]) {
-    unsigned int j = 0;
-    while (_array[j]) {
-      if (_array[i] - _array[j] > span) span = _array[i] - _array[j];
-      j++;
-    }
-    i++;
+  for (unsigned int i = 0; i < _len; i++) {
+    if (max < _array[i]) max = _array[i];
   }
-  return span;
+  return max;
 }
+
+int Span::min() {
+  int min = std::numeric_limits<int>::max();
+
+  for (unsigned int i = 0; i < _len; i++) {
+    if (min > _array[i]) min = _array[i];
+  }
+  return min;
+}
+
+long Span::longestSpan() { return max() - min(); }
 
 void Span::addNumber(int n) {
   if (_len < _size) {

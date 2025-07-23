@@ -22,6 +22,8 @@ class Span {
   long shortestSpan();
   long longestSpan();
   void addNumber(int n);
+  int min();
+  int max();
 
   // exception
   class OverflowException : public std::exception {
