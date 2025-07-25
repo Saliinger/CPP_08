@@ -37,8 +37,8 @@ template <typename T>
 MutantStack<T>::iterator::iterator() : _it(NULL) {}
 
 template <typename T>
-MutantStack<T>::iterator::iterator(const typename MutantStack<T>::iterator &src)
-    : _it(src._it) {}
+MutantStack<T>::iterator::iterator(const typename std::stack<T>::container_type::iterator &src)
+    : _it(src) {}
 
 template <typename T>
 typename MutantStack<T>::iterator &MutantStack<T>::iterator::operator=(
@@ -62,12 +62,12 @@ MutantStack<T>::iterator::iterator(
 
 template <typename T>
 typename MutantStack<T>::iterator &MutantStack<T>::iterator::operator++() {
-  return this->_it++;
+  return *this;
 }
 
 template <typename T>
 typename MutantStack<T>::iterator &MutantStack<T>::iterator::operator--() {
-  return this->_it--;
+  return *this;
 }
 
 template <typename T>
@@ -83,4 +83,6 @@ bool MutantStack<T>::iterator::operator==(
 }
 
 template <typename T>
-T &MutantStack<T>::iterator::operator*() {}
+T &MutantStack<T>::iterator::operator*() {
+    return this->_it.pointer;
+}
