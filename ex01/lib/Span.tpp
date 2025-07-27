@@ -54,11 +54,29 @@ int Span::min() {
 
 long Span::shortestSpan() {
   if (_len < 2) throw NoSpanException();
+  int span = std::numeric_limits<int>::max(), equal = 0;
 
-  return 0;
+  for (unsigned int i = 0; _array[i]; i++) {
+    int s = _array[i] - this->min();
+    
+    // check for shorter span
+    if (span > s && _array[i] != this->min()) span = s;
+
+    // count number of the same number
+    if (_array[i] == this->min()) equal++;
+  }
+
+  // check if there was other number to avoid
+  // returning INT_MAX the default value
+  if (equal == _len) throw NoSpanException();
+
+  return span;
 }
 
-long Span::longestSpan() { return max() - min(); }
+long Span::longestSpan() {
+  if (_len < 2) throw NoSpanException();
+  return this->max() - this->min();
+}
 
 void Span::addNumber(int n) {
   if (_len < _size) {
