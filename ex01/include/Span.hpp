@@ -23,15 +23,23 @@ class Span {
   long shortestSpan();
   long longestSpan();
   void addNumber(int n);
+  void addNumbers(int n1, int n2);
   int min();
   int max();
+
+  // custom
+  void show() const;
 
   // exception
   class OverflowException : public std::exception {
     const char *what() const throw();
   };
 
-    class NoSpanException : public std::exception {
+  class NoSpanException : public std::exception {
+    const char *what() const throw();
+  };
+
+  class NoRangeException : public std::exception {
     const char *what() const throw();
   };
 };

@@ -54,11 +54,12 @@ int Span::min() {
 
 long Span::shortestSpan() {
   if (_len < 2) throw NoSpanException();
-  int span = std::numeric_limits<int>::max(), equal = 0;
+  int span = std::numeric_limits<int>::max();
+  unsigned int equal = 0;
 
-  for (unsigned int i = 0; _array[i]; i++) {
+  for (unsigned int i = 0; i < _len; i++) {
     int s = _array[i] - this->min();
-    
+
     // check for shorter span
     if (span > s && _array[i] != this->min()) span = s;
 
@@ -86,10 +87,50 @@ void Span::addNumber(int n) {
     throw OverflowException();
 }
 
+void Span::addNumbers(int n1, int n2) {
+  unsigned int len = 0;
+
+  if (n1 > n2)
+    len = n1 - n2;
+  else if (n1 < n2)
+    len = n2 - n1;
+  else
+    throw NoRangeException();
+
+  if (len + _len > _size) throw OverflowException();
+
+  if (n1 > n2) {
+    unsigned int i = _len;
+    while (i < _size && n1 >= n2) {
+      _array[i] = n1;
+      n1--;
+      i++;
+    }
+    _len = i;
+  } else {
+    unsigned int i = _len;
+    while (i < _size && n1 <= n2) {
+      _array[i] = n1;
+      n1++;
+      i++;
+    }
+    _len = i;
+  }
+}
+
+void Span::show() const {
+  for (unsigned int i = 0; i < _len; i++)
+    std::cout << i << ": " << _array[i] << std::endl;
+}
+
 const char *Span::OverflowException::what() const throw() {
   return "Error: no space left";
 }
 
 const char *Span::NoSpanException::what() const throw() {
   return "Error: no span";
+}
+
+const char *Span::NoRangeException::what() const throw() {
+  return "Error: no range";
 }
