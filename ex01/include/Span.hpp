@@ -2,12 +2,13 @@
 
 #include <iostream>
 #include <limits>
+#include <vector>
 
 class Span {
  private:
   unsigned int _size;
   unsigned int _len;
-  int *_array;
+  std::vector<int> _array;
 
  public:
   // orthodox cannonical form
@@ -43,5 +44,3 @@ class Span {
     const char *what() const throw();
   };
 };
-
-#include "../lib/Span.tpp"

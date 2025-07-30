@@ -2,9 +2,11 @@
 
 template <typename T>
 T &easyfind(T *array, int to_find) {
-  for (int i = 0; array[i]; i++)
-    if (to_find == array[i]) return (array[i]);
-  throw NopeException();
+  typename T::iterator it;
+
+  it = std::find(array.begin(), array.end(), to_find);
+  if (it == array.end() && it != to_find) throw NopeException();
+  return it;
 }
 
 const char *NopeException::what(void) const throw() {
