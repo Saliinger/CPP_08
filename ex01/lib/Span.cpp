@@ -28,7 +28,18 @@ Span::Span(unsigned int size) : _size(size), _len(0) {}
 // funcitons
 long Span::shortestSpan() const {
   if (_len < 2) throw NoSpanException();
-  int span = 0;
+
+  std::vector<int> sorted(_array);
+  std::sort(sorted.begin(), sorted.end());
+
+  long span = std::numeric_limits<int>::max();
+
+  for (unsigned int i = 0; i < _len; i++) {
+    for (unsigned int j = 0; j < _len; j++) {
+        if(sorted[j] - sorted[i] < span && i != j)
+          span = sorted[j] - sorted[i];
+    }
+  }
 
   return span;
 }
