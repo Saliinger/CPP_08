@@ -23,21 +23,29 @@ Span::~Span() {}
 // construcor
 Span::Span(unsigned int size) : _size(size), _len(0) {}
 
-
 //////////////////////////// TODO
 
 // funcitons
-int Span::max() {}
+long Span::shortestSpan() const {
+  if (_len < 2) throw NoSpanException();
+  int span = 0;
 
-int Span::min() {}
+  return span;
+}
 
-long Span::shortestSpan() {}
+long Span::longestSpan() const {
+  if (_len < 2) throw NoRangeException();
+  return *std::max_element(_array.begin(), _array.end()) -
+         *std::min_element(_array.begin(), _array.end());
+}
 
-long Span::longestSpan() {}
-
-void Span::addNumber(int n) {}
-
-void Span::addNumbers(int n1, int n2) {}
+void Span::addNumber(int n) {
+  if (_len < _size) {
+    _array.push_back(n);
+    _len++;
+  } else
+    throw OverflowException();
+}
 
 void Span::show() const {
   for (unsigned int i = 0; i < _len; i++)

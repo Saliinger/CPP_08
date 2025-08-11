@@ -1,4 +1,4 @@
-#include "../include/easyfind.hpp"
+   #include "../include/easyfind.hpp"
 
 template <typename T>
 T &easyfind(T *array, int to_find) {

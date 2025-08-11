@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <limits>
 #include <vector>
@@ -21,12 +22,19 @@ class Span {
   Span(unsigned int size);
 
   // functions
-  long shortestSpan();
-  long longestSpan();
+  long shortestSpan() const;
+  long longestSpan() const;
   void addNumber(int n);
-  void addNumbers(int n1, int n2);
-  int min();
-  int max();
+
+  template <typename T>
+  void addNumber(T n1, T n2) {
+    unsigned int len = static_cast<unsigned int>(std::distance(n1, n2));
+    if (len + _len  <= _size) {
+      _array.insert(_array.end(), n1, n2);
+      _len += len;
+    } else
+      throw OverflowException();
+  }
 
   // custom
   void show() const;

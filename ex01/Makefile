@@ -1,12 +1,13 @@
 NAME = Span
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
 
 SRCDIR = src
 INCDIR = include
 LIBDIR = lib
 
-SOURCES = $(SRCDIR)/main.cpp
+SOURCES = $(SRCDIR)/main.cpp \
+			$(LIBDIR)/Span.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(NAME)
