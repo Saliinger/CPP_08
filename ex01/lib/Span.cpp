@@ -32,13 +32,10 @@ long Span::shortestSpan() const {
   std::vector<int> sorted(_array);
   std::sort(sorted.begin(), sorted.end());
 
-  long span = std::numeric_limits<int>::max();
-
-  for (unsigned int i = 0; i < _len; i++) {
-    for (unsigned int j = 0; j < _len; j++) {
-        if(sorted[j] - sorted[i] < span && i != j)
-          span = sorted[j] - sorted[i];
-    }
+  long span = std::numeric_limits<long>::max();
+  for (unsigned int i = 0; i + 1 < _len; ++i) {
+    long diff = static_cast<long>(sorted[i + 1]) - static_cast<long>(sorted[i]);
+    if (diff < span) span = diff;
   }
 
   return span;
