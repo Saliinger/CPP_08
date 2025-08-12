@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <limits>
 #include <vector>
 
@@ -29,7 +30,7 @@ class Span {
   template <typename T>
   void addNumber(T n1, T n2) {
     unsigned int len = static_cast<unsigned int>(std::distance(n1, n2));
-    if (len + _len  <= _size) {
+    if (len + _len <= _size) {
       _array.insert(_array.end(), n1, n2);
       _len += len;
     } else
