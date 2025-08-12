@@ -1,11 +1,18 @@
-   #include "../include/easyfind.hpp"
+#include "../include/easyfind.hpp"
 
 template <typename T>
-T &easyfind(T *array, int to_find) {
-  typename T::iterator it;
+typename T::iterator easyfind(T &container, int to_find) {
+  typename T::iterator it =
+      std::find(container.begin(), container.end(), to_find);
+  if (it == container.end()) throw NopeException();
+  return it;
+}
 
-  it = std::find(array.begin(), array.end(), to_find);
-  if (it == array.end() && it != to_find) throw NopeException();
+template <typename T>
+typename T::const_iterator easyfind(const T &container, int to_find) {
+  typename T::const_iterator it =
+      std::find(container.begin(), container.end(), to_find);
+  if (it == container.end()) throw NopeException();
   return it;
 }
 

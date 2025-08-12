@@ -23,8 +23,6 @@ Span::~Span() {}
 // construcor
 Span::Span(unsigned int size) : _size(size), _len(0) {}
 
-//////////////////////////// TODO
-
 // funcitons
 long Span::shortestSpan() const {
   if (_len < 2) throw NoSpanException();
@@ -59,8 +57,6 @@ void Span::show() const {
   for (unsigned int i = 0; i < _len; i++)
     std::cout << i << ": " << _array[i] << std::endl;
 }
-
-//////////////////////////// END TODO
 
 const char *Span::OverflowException::what() const throw() {
   return "Error: no space left";

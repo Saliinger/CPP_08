@@ -1,10 +1,13 @@
 #pragma once
 
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 template <typename T>
-T &easyfind(T *array, int to_find);
+typename T::iterator easyfind(T &container, int to_find);
+
+template <typename T>
+typename T::const_iterator easyfind(const T &container, int to_find);
 
 class NopeException : public std::exception {
  public:
